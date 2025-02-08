@@ -1,0 +1,13 @@
+body {
+
+    overflow-x: hidden;
+    margin: 0; /* Prevent unintended margins causing overflow */
+    padding: 0; 
+  font-family: 'Nunito', sans-serif !important;
+  background-color: #FBFAFB !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

@@ -1,0 +1,62 @@
+.task-manager {
+    width: 80%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .app-bar {
+    background-color: #3f51b5;
+    color: white;
+    padding: 10px 20px;
+  }
+  
+  .app-bar h1 {
+    margin: 0;
+  }
+  
+  .input-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  
+  .input-container input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .input-container .filter-button,
+  .input-container .add-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-left: 10px;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #e0e0e0;
+    border: none;
+    outline: none;
+    margin: 0 5px;
+  }
+  
+  .tab.active {
+    background-color: #3f51b5;
+    color: white;
+  }
+  
+  .tab-content {
+    background-color: #f9f9f9;
+    padding: 20px;
+    text-align: center;
+  }
+  

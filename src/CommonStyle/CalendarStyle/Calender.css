@@ -1,0 +1,92 @@
+.calendar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.calendar-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calendar-navigation select {
+  margin: 0 10px;
+}
+
+.calendar-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: #7229D9;
+  padding: 10px 0;
+  color: white;
+  text-align: center;
+}
+
+.calendar-header div {
+  font-weight: bold;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  width: 100%;
+}
+
+.calendar-day {
+  width: 100%; /* Adjust to fit grid layout */
+  aspect-ratio: 1; /* Ensures square cells */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.calendar-day.empty {
+  background-color: #f9f9f9;
+}
+
+.calendar-day:hover {
+  transform: scale(1.05);
+}
+
+.date {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.hover-content {
+  font-size: 12px;
+  transition: font-size 0.3s ease;
+}
+
+.calendar-day:hover .hover-content {
+  font-size: 14px;
+}
+
+/* Optional: commented-out event class */
+.event {
+  color: #888;
+}
+
+.tab {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: gray;
+}
+
+.tab.selected {
+  color: #7229D9;
+  border-bottom: 2px solid #7229D9;
+}
