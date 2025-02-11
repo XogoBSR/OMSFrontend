@@ -228,112 +228,114 @@ export default function Activity() {
         setShowBreakPop(val)
     }
 
-    if (Can(actions.readSelf, features.attendance)) {
-        return (
-            <>
-            <Grid item lg={6} sm={12} xs={12}>
-                <Card sx={{
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center'
-                }}>
-                    <Timer color='primary' sx={{ fontSize: 100 }}/>
-                    <Box>
-                        <Typography variant='h5' sx={{ mb: 3 }}>Your Activity Today</Typography>
-                        <InfoLog>
-                            <Box sx={{ textAlign: 'center' }}>
-                                <Typography>Check In</Typography>
-                                <Typography variant='subtitle2'>
-                                    {attendance.checkIn ? moment(attendance.checkIn).format('HH:mm') : '-'}
-                                </Typography>
-                            </Box>
-                            <Box sx={{ textAlign: 'center' }}>
-                                <Typography>Check Out</Typography>
-                                <Typography variant='subtitle2'>
-                                    {attendance.checkOut ? moment(attendance.checkOut).format('HH:mm') : '-'}
-                                </Typography>
-                            </Box>
-                        </InfoLog>
-                    </Box>
-                    {!attendance.checkOut && (
-                        <Box sx={{ mt: 3 }}>
-                            {!attendance.checkIn ? (
-                                <Button
-                                    fullWidth
-                                    variant='contained'
-                                    color='success'
-                                    onClick={handleCheckIn}>Check In</Button>
-                            ) : (
-                                <>
-                                 {todayActivity.length > 0  && todayActivity[0].breakStatus ?(
+    if (!Can(actions.readSelf, features.attendance)) {
+        return <div>No permission to view attendance.</div>; 
+    } 
 
-                                    <select style={{
-                                        backgroundColor: 'green', // Change this to your desired color
-                                        color: 'white', // Change text color if needed
-                                        padding: '10px', // Add some padding
-                                        borderRadius: '10px', 
-                                    }} value={lunchType} onChange={(e) => { 
-                                        setLunchType(e.target.value) 
-                                        }}>
-                                            <option value="">---</option>
-                                        <option value="breakOut">Break Out</option>
-                                    </select>
-                              
-                                   ):(
-                                    
-                                    <select style={{
-                                        backgroundColor: 'green', // Change this to your desired color
-                                        color: 'white', // Change text color if needed
-                                        padding: '10px', // Add some padding
-                                        borderRadius: '10px', 
-                                    }} value={lunchType} onChange={(e) => { 
-                                        setLunchType(e.target.value) 
-                                        }}>
-                                        <option value="">Break In</option>
-                                        <option value="lunchBreak">Lunch Break</option>
-                                        <option value="teaBreak">Tea Break</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                    )} 
-                         
-                                 {isLoading &&todayActivity.length === 0 ? (
-                                        <TodayGoal title= "Today's Goal" task="goal"/>
-                                    ) : null }
-                                  {showBreakPop === true ? (
-                                    <OtherBreak openVal={true} 
-                                    settingFun={breakPopUpController} _id={todayActivity[0]._id}/>
-                                    
-                                        ): null }
-                                    {lateCheckIn ? (
-                                        <EarlyLate openVal={true} task="late" dialogTitle="Late Check In" id={todayActivity[0]._id}/>
-                                    ) : null}
-                            
-                                <Button
-                                    variant='contained'
-                                    color='error'
-                                    onClick={handleCheckOut}>Check Out</Button>
-                                </>
-                            )}
+    return (
+        <>
+        <Grid item lg={6} sm={12} xs={12}>
+            <Card sx={{
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
+            }}>
+                <Timer color='primary' sx={{ fontSize: 100 }}/>
+                <Box>
+                    <Typography variant='h5' sx={{ mb: 3 }}>Your Activity Today</Typography>
+                    <InfoLog>
+                        <Box sx={{ textAlign: 'center' }}>
+                            <Typography>Check In</Typography>
+                            <Typography variant='subtitle2'>
+                                {attendance.checkIn ? moment(attendance.checkIn).format('HH:mm') : '-'}
+                            </Typography>
                         </Box>
-                    )}
-                    {todayStatus ? <EarlyLate openVal={true} task="status" dialogTitle="Work Status" id={todayActivity[0]._id}/> : null}
-                    {earlyCheckOut ? (<EarlyLate openVal={true} task="early" dialogTitle="Early Check Out" id={todayActivity[0]._id}/>) : null}
-                    {overLimitBreak ?(<OverLimitBreak openVal={true} id={todayActivity[0]._id}/>) : null}
-                </Card>
-            </Grid>
+                        <Box sx={{ textAlign: 'center' }}>
+                            <Typography>Check Out</Typography>
+                            <Typography variant='subtitle2'>
+                                {attendance.checkOut ? moment(attendance.checkOut).format('HH:mm') : '-'}
+                            </Typography>
+                        </Box>
+                    </InfoLog>
+                </Box>
+                {!attendance.checkOut && (
+                    <Box sx={{ mt: 3 }}>
+                        {!attendance.checkIn ? (
+                            <Button
+                                fullWidth
+                                variant='contained'
+                                color='success'
+                                onClick={handleCheckIn}>Check In</Button>
+                        ) : (
+                            <>
+                             {todayActivity.length > 0  && todayActivity[0].breakStatus ?(
 
-         <div className="container" style={ {textAlign:"center", backgroundColor:"white", border:"1px" }}>
-                        <ProductivityChart todayActivities={todayActivity} />
-           </div>
+                                <select style={{
+                                    backgroundColor: 'green', // Change this to your desired color
+                                    color: 'white', // Change text color if needed
+                                    padding: '10px', // Add some padding
+                                    borderRadius: '10px', 
+                                }} value={lunchType} onChange={(e) => { 
+                                    setLunchType(e.target.value) 
+                                    }}>
+                                        <option value="">---</option>
+                                    <option value="breakOut">Break Out</option>
+                                </select>
+                          
+                               ):(
+                                
+                                <select style={{
+                                    backgroundColor: 'green', // Change this to your desired color
+                                    color: 'white', // Change text color if needed
+                                    padding: '10px', // Add some padding
+                                    borderRadius: '10px', 
+                                }} value={lunchType} onChange={(e) => { 
+                                    setLunchType(e.target.value) 
+                                    }}>
+                                    <option value="">Break In</option>
+                                    <option value="lunchBreak">Lunch Break</option>
+                                    <option value="teaBreak">Tea Break</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                )} 
+                     
+                             {isLoading &&todayActivity.length === 0 ? (
+                                    <TodayGoal title= "Today's Goal" task="goal"/>
+                                ) : null }
+                              {showBreakPop === true ? (
+                                <OtherBreak openVal={true} 
+                                settingFun={breakPopUpController} _id={todayActivity[0]._id}/>
+                                
+                                    ): null }
+                                {lateCheckIn ? (
+                                    <EarlyLate openVal={true} task="late" dialogTitle="Late Check In" id={todayActivity[0]._id}/>
+                                ) : null}
+                        
+                            <Button
+                                variant='contained'
+                                color='error'
+                                onClick={handleCheckOut}>Check Out</Button>
+                            </>
+                        )}
+                    </Box>
+                )}
+                {todayStatus ? <EarlyLate openVal={true} task="status" dialogTitle="Work Status" id={todayActivity[0]._id}/> : null}
+                {earlyCheckOut ? (<EarlyLate openVal={true} task="early" dialogTitle="Early Check Out" id={todayActivity[0]._id}/>) : null}
+                {overLimitBreak ?(<OverLimitBreak openVal={true} id={todayActivity[0]._id}/>) : null}
+            </Card>
+        </Grid>
 
-           <div className="container" style={ {textAlign:"center", backgroundColor:"white", border:"1px", width:"50%"}}>
-                        <AttendanceBarChart activities = {activities}  />
-           </div>
+     <div className="container" style={ {textAlign:"center", backgroundColor:"white", border:"1px" }}>
+                    <ProductivityChart todayActivities={todayActivity} />
+       </div>
 
-          
-                </>
-        )
-    }
+       <div className="container" style={ {textAlign:"center", backgroundColor:"white", border:"1px", width:"50%"}}>
+                    <AttendanceBarChart activities = {activities}  />
+       </div>
+
+      
+            </>
+    )
 
 }
