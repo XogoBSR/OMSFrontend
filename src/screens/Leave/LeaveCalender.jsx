@@ -224,7 +224,7 @@ const LeaveCalender = () => {
     <>
     {leaveForm ? (<FormLeavePop openFun={leaveFormFun}/>) : (null)}
     {leaveDetailsPop ? (<Dialog
-        open={open}
+        open={true}
         onClose={leaveDetailsPop}
         maxWidth="md"
         PaperProps = {{
