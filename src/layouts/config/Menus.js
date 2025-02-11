@@ -1,4 +1,4 @@
-import React, { act, useEffect } from "react";
+import React from "react";
 import {
     AccountBalance,
     AccountBalanceWallet,
@@ -6,8 +6,6 @@ import {
     Dashboard,
     People, Settings,
     MoreTime,
-    TimeToLeave,
-    AccessAlarm,
     Task,
     ContactPage,
     EventNote

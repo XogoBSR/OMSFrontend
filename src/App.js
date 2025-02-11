@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import './App.css';
 import Routes from "./routes";
 import {ThemeProvider} from "@mui/material";

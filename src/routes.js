@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import User from "screens/User";
 import MainLayout from "./layouts/MainLayout";
@@ -83,7 +83,7 @@ const PrivateRoutes = [
 
 export default function Routes() {
     const profile = useSelector(UserSelector.profile());
-    const [userRole, setUserRole] = useState([]);
+    const [userRole] = useState([]);
 
     useEffect(() => {
         if (profile) {

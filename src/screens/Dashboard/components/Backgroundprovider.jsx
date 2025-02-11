@@ -225,7 +225,9 @@ useEffect(() => {
 
   }, [activities]);
 
-  return <backContext.Provider value={{activities, todayActivity,profile}}>{children}</backContext.Provider>;
+  return (
+  <backContext.Provider value={{activities, todayActivity,profile}}>{children}</backContext.Provider>
+);
 }
 
 Backgroundprovider.propTypes = {
