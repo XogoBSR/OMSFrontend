@@ -41,7 +41,7 @@
     "react-toastify": "^10.0.6",
     "rechart": "^0.0.1",
     "recharts": "^2.14.1",
-    "redux-saga": "^1.3.0",
+    "redux-saga": "^1.1.3",
     "serve": "^14.2.4",
     "styled-components": "^6.1.13",
     "web-vitals": "^1.0.1",
