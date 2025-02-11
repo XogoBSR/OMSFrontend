@@ -40,7 +40,6 @@ function TimelineRequest({startTime,endTime,addRequest,setAddRequest,fromRequest
       // This is for initializing the values 
     useEffect(() => {
       
-        
             setOpen(addRequest)
             setFromHour(startTime.getHours() === 12 ? 12 : (startTime.getHours()%12))
             // setFromHour(startTime.getHours())

@@ -104,7 +104,7 @@ function TodayGoal({task,title}) {
             />
           </DialogContent>
           <DialogActions>
-            {/* <Button onClick={handleClose}>Cancel</Button> */}
+           
             <Button type="submit">Submit</Button>
           </DialogActions>
         </Dialog> : activities.length > 0 && activities.map((value) => (

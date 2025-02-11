@@ -10,7 +10,6 @@ function AttendanceBarChart({activities}) {
     const [hoursData] = useState([])
 
     useEffect(() => {
-        // console.warn("Chart Attendances ",activities[0].totalWorkingTime)
 
         if(datesData.length === 0) {
 

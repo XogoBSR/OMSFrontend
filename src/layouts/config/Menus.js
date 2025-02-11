@@ -55,7 +55,7 @@ const Menus = [
 
 const getMenusForUser = (userRole) => {
     if (userRole === "admin") {
-        // Filter out the parent Leave menu item
+       
         return Menus.filter(menu => menu.path !== "/app/leave" || menu.path !== '/app/timeline');
     }
     return Menus;

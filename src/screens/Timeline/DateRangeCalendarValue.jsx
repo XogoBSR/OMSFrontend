@@ -31,7 +31,6 @@ export default function DateRangeCalendarValue({settingTheRange}) {
   ]);
 
   React.useEffect(() => {
-    // let datePicker = document.getElementById("datePicker")
     console.log("Date Picker ",value)
     if(value.length > 1) {
       settingTheRange(value[0].$d,value[1].$d)
