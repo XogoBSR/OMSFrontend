@@ -35,8 +35,8 @@ export const ProductSlice = createSlice({
             console.log("State Product ",state.product,action.payload.data)
         },
         getProducts: () => {},
-        createProductByAdmin: () => {},
-        createProductsTask: () => {},
+        createTaskByAdmin: () => {},
+        createProductsTaskByUser: () => {},
         getProductsByUser: () => {}
     }
 })

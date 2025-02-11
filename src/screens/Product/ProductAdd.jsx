@@ -66,7 +66,8 @@ function ProductAdd({ openValFun }) {
             members: values.reporter,
             estimatedAmount: values.estimatedAmount,
             estimatedHours: values.estimatedHours,
-            client: clients[clientIndex]._id
+            client: clients[clientIndex]._id,
+            visibility:values.visibility === "public"
         }
         dispatch(ProductActions.createProduct(data))
         openValFun(false)

@@ -26,6 +26,7 @@ import { AddCircle } from "@mui/icons-material";
 import AddMembers from "./components/AddMembers";
 import TaskHistoryAdmin from "./components/TaskHistoryAdmin";
 
+
 const FilterBox = styled(Box)(() => ({
   width: "100%",
   marginTop: 30,
@@ -67,7 +68,7 @@ function ProductList() {
   const history = useHistory()
 
   useEffect(() => {
-    console.log("Products ", products);
+    console.log("Products Product List ", products);
   },[products])
 
   useEffect(() => {
@@ -173,7 +174,7 @@ function addMemberController(str) {
                           <Button style={{ backgroundColor: "green", color: "white", marginRight: 1 }} onClick={() => {
                               // setProductUpdate(true)
                               // setProduct(data)
-                              history.push("/app/project/update",{data:data})
+                              history.push(`/app/project/update/${data._id}`)
                           }}>
                             Update
                           </Button>

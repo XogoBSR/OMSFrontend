@@ -108,7 +108,7 @@ function AddMembers({ openVal, openValFun, productId }) {
               <ListItemIcon>
                 <Checkbox
                   edge="start"
-                  checked={selectedUserIds.includes(user._id)}
+                  checked={selectedUserIds?.includes(user._id)}
                   tabIndex={-1}
                   disableRipple
                 />

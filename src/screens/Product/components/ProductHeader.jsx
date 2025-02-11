@@ -20,12 +20,12 @@ function ProductHeader({product}) {
     const users = useSelector(UserSelector.getUsers())
     const [selectedUserIds, setSelectedUserIds] = useState([]);
 
-    const filteredData = users.filter((element) => product.members?.includes(element._id))
+    const filteredData = users.filter((element) => product[0]?.members?.includes(element._id))
 
     const profile = useSelector(UserSelector.profile())
 
     useEffect(() => {
-        console.log("Task Creat Users ",product)
+        console.log("Task Creat Users Admin",product[0])
         dispatch(UserActions.getUsers())
     },[])
 
@@ -40,8 +40,9 @@ function ProductHeader({product}) {
       };
 
     const updateProductFunction = () => {
-        dispatch(ProductActions.createProductsTask({
-            id: product._id,
+        console.log("ADDED ADDED")
+        dispatch(ProductActions.createTaskByAdmin({
+            id: product[0]._id,
             taskTitle: task,
             assignee: selectedUserIds,
             reporter: profile._id

@@ -27,6 +27,7 @@ import { PlayCircle, StopCircle } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductSelector, UserSelector } from 'selectors';
 import { ProductActions } from 'slices/actions';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const FilterBox = styled(Box)(() => ({
@@ -39,11 +40,10 @@ const FilterBox = styled(Box)(() => ({
 
 function TaskHistoryAdmin() {
 
-    const location = useLocation()
+    const {data}  = useParams()
 
-    const { data } = location.state || {};
-
-    const product = useSelector(ProductSelector.getProductById())
+    const products = useSelector(ProductSelector.getProducts())
+    const [product,setProduct] = useState([])
 
     const dispatch = useDispatch()
 
@@ -55,15 +55,18 @@ function TaskHistoryAdmin() {
     });
 
     useEffect(() => {
-      console.log(" NAVIGATE PRODUCT ",data)
-      dispatch(ProductActions.getProductById({
-            id:data._id
-          }))
+      console.log(" NAVIGATE PRODUCT ",data,products)
+      // dispatch(ProductActions.getProductById({
+      //       id:data._id
+      //     }))
+
+      setProduct(products.filter((element) => element._id === data))
     },[])
 
       useEffect(() => {
         console.log("Product Got ",product)
-      },[product])
+        setProduct(products.filter((element) => element._id === data))
+      },[products])
 
     const handleChangePagination = (e, val) => {
         setFilter({
@@ -87,7 +90,7 @@ function TaskHistoryAdmin() {
           <Card style={{ overflow: "scroll" }}>
           
             <Typography variant="h5" sx={{ fontWeight: 600 }}>
-              {data.productName}
+              {product[0]?.productName}
             </Typography>
           <FilterBox>
                       <Grid container spacing={10} justifyContent="space-between">
@@ -113,7 +116,7 @@ function TaskHistoryAdmin() {
                 <TableBody>
                 
     
-                  {product?.taskArr?.length > 0 ? (product.taskArr.map((data, index) => (
+                  {product[0]?.taskArr?.length > 0 ? (product[0].taskArr.map((data, index) => (
                     <TableRow
                       sx={{ "&:last-child td, &:last-child td": { border: 0 } }}
                       key={index}
@@ -137,7 +140,7 @@ function TaskHistoryAdmin() {
                         </IconButton>
                       </TableCell>
                       <TableCell component="td" scope="row" align="center">
-                            0/{product.totalHours}
+                            0/{product[0].totalHours}
                       </TableCell>
                       <TableCell component="td" scope="row" align="center">
 

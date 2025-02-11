@@ -164,7 +164,8 @@ function addMemberController(str) {
                           <Button style={{ backgroundColor: "green", color: "white", marginRight: 1 }} onClick={() => {
                               // setProductUpdate(true)
                               // setProduct(data)
-                              history.push(`/app/project/update/${profile._id}`)
+                              // history.push(`/app/project/update/${profile._id}`)
+                               history.push(`/app/user/tasklist/note/${data._id}`)
                           }}>
                             Update
                           </Button>

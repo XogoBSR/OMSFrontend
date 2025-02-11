@@ -25,15 +25,15 @@ function *createProduct({type, payload}) {
     }
 }
 
-function *createProductByAdmin({type, payload}) {
+function *createTaskByAdmin({type, payload}) {
     try {
         yield put(GeneralActions.removeError(type));
         yield put(GeneralActions.startLoading(type));
         console.warn("Create Product ",payload)
-        const result = yield call(ProductService.createProduct, payload);
+        const result = yield call(ProductService.createProductsTask, payload.id,payload);
         const resultHis = yield call(ProductService.getProducts);
         const data = yield resultHis.json()
-        console.warn("Create Product data ",data)
+        console.warn("Create Product data By Admin ",data)
         yield put(ProductActions.getSuccessfullyProducts(data));
         yield put(GeneralActions.stopLoading(type))
     } catch (err) {
@@ -107,17 +107,18 @@ function *getProducts({type,payload}) {
 }
 
 
-function *createProductsTask({type,payload}) {
+function *createProductsTaskByUser({type,payload}) {
 
     try {
         yield put(GeneralActions.removeError(type));
         yield put(GeneralActions.startLoading(type));
-        console.warn("Update Product ",payload.id,payload) 
-        const result1 = yield call(ProductService.createProductsTask,payload.id,payload);
-        const result = yield call(ProductService.getProductById,payload.id);
-        const data = yield result.json()
-        console.log(" Updated Product Result ",data)
-        yield put(ProductActions.getSuccessfullyProductById(data));
+        console.log("TAsk By User ",payload)
+        const result = yield call(ProductService.createProductsTask,payload.id,payload);
+        const resultHis = yield call(ProductService.getProducts);
+        const data = yield resultHis.json()
+        console.warn("Update Product ",data) 
+        yield put(ProductActions.getSuccessfullyProducts(data));
+     
         yield put(GeneralActions.stopLoading(type))
     } catch (err) {
         yield put(GeneralActions.stopLoading(type));
@@ -174,8 +175,8 @@ export function *ProductWatcher() {
         yield takeLatest(ProductActions.getProducts.type, getProducts),
         yield takeLatest(ProductActions.updateProduct.type, updateProduct),
         yield takeLatest(ProductActions.deleteProduct.type, deleteProduct),
-        yield takeLatest(ProductActions.createProductByAdmin.type, createProductByAdmin),
-        yield takeLatest(ProductActions.createProductsTask.type, createProductsTask),
+        yield takeLatest(ProductActions.createTaskByAdmin.type, createTaskByAdmin),
+        yield takeLatest(ProductActions.createProductsTaskByUser.type, createProductsTaskByUser),
         yield takeLatest(ProductActions.getProductById.type, getProductById),
         yield takeLatest(ProductActions.getProductsByUser.type, getProductsByUser)
  ]);

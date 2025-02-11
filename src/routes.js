@@ -75,9 +75,10 @@ const PrivateRoutes = [
     { path: "/app/user/timeline", component: Timeline },
     { path: '/app/project/timesheet', component: ProductList},
     { path: '/app/client', component: Client},
-    { path: '/app/project/update', component: TaskHistoryAdmin},
+    { path: '/app/project/update/:data', component: TaskHistoryAdmin},
     { path: '/app/tasks', component: Tasklist},
-    { path: '/app/user/projects', component: ProductListStaff}
+    { path: '/app/user/projects', component: ProductListStaff},
+    { path: '/app/user/tasklist/note/:data', component: TaskListNote}
 ];
 
 export default function Routes() {
