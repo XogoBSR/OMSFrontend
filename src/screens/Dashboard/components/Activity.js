@@ -229,7 +229,7 @@ export default function Activity() {
     }
 
     if (!Can(actions.readSelf, features.attendance)) {
-        return <div>No permission to view attendance.</div>; 
+        return <div> </div>; 
     } 
 
     return (
