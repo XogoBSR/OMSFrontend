@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import User from "screens/User";
 import MainLayout from "./layouts/MainLayout";
@@ -32,10 +32,8 @@ import ProductList from "screens/Product/ProductList";
 import Client from "screens/Client/Client";
 import Tasklist from "screens/Product/Tasklist";
 import ProductListStaff from "screens/Product/Staff/ProductListStaff";
-import TaskListNote from "screens/Product/Staff/TaskListNote";
-import TaskHistoryAdmin from "screens/Product/components/TaskHistoryAdmin";
-
-
+import TaskHistoryAdmin from "screens/Product/TaskHistoryAdmin";
+import TaskListWithNote from "screens/Product/Staff/TaskListWithNote";
 
 const PrivateRoutes = [
     { path: "/app/user", component: User },
@@ -78,12 +76,12 @@ const PrivateRoutes = [
     { path: '/app/project/update/:data', component: TaskHistoryAdmin},
     { path: '/app/tasks', component: Tasklist},
     { path: '/app/user/projects', component: ProductListStaff},
-    { path: '/app/user/tasklist/note/:data', component: TaskListNote}
+    { path: '/app/user/tasklist/note/:data', component: TaskListWithNote}
 ];
 
 export default function Routes() {
     const profile = useSelector(UserSelector.profile());
-    const [userRole] = useState([]);
+    const [userRole, setUserRole] = useState([]);
 
     useEffect(() => {
         if (profile) {

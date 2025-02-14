@@ -4,7 +4,6 @@ import {
     Box,
     Card,
     Grid,
-    MenuItem,
     Table,
     TableBody,
     TableCell,
@@ -19,15 +18,12 @@ import {
 
 import styled from "@emotion/styled";
 import DialogConfirm from 'components/DialogConfirm';
-import { DefaultSort } from 'constants/sort';
-import PropTypes, { element } from 'prop-types';
-import ProductHeader from './ProductHeader';
-import { useLocation } from "react-router-dom";
+import { DefaultSort } from 'constants/sort'; 
 import { PlayCircle, StopCircle } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductSelector, UserSelector } from 'selectors';
-import { ProductActions } from 'slices/actions';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import ProductHeader from './components/ProductHeader';
 
 
 const FilterBox = styled(Box)(() => ({
@@ -41,14 +37,10 @@ const FilterBox = styled(Box)(() => ({
 function TaskHistoryAdmin() {
 
     const {data}  = useParams()
-
     const products = useSelector(ProductSelector.getProducts())
     const [product,setProduct] = useState([])
-
     const dispatch = useDispatch()
-
     const users = useSelector(UserSelector.getUsers())
-
     const [filter, setFilter] = useState({
         sort: DefaultSort.newest.value,
         page: 1,
@@ -56,10 +48,6 @@ function TaskHistoryAdmin() {
 
     useEffect(() => {
       console.log(" NAVIGATE PRODUCT ",data,products)
-      // dispatch(ProductActions.getProductById({
-      //       id:data._id
-      //     }))
-
       setProduct(products.filter((element) => element._id === data))
     },[])
 
@@ -92,6 +80,15 @@ function TaskHistoryAdmin() {
             <Typography variant="h5" sx={{ fontWeight: 600 }}>
               {product[0]?.productName}
             </Typography>
+            
+            <Box>
+            {/* <span style={{display:"flex",width:"350px", justifyContent:"space-between" , flexWrap:"wrap"}}>
+            <Button>Task</Button>
+            <Button>Settings</Button>
+            <Button>Overview</Button>
+            <Button>Note</Button>
+          </span> */}
+          </Box>
           <FilterBox>
                       <Grid container spacing={10} justifyContent="space-between">
                           <Grid item lg={11} sm={12} xs={12}>

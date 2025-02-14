@@ -1,4 +1,4 @@
-import React from "react";
+import React, { act, useEffect } from "react";
 import {
     AccountBalance,
     AccountBalanceWallet,
@@ -6,6 +6,8 @@ import {
     Dashboard,
     People, Settings,
     MoreTime,
+    TimeToLeave,
+    AccessAlarm,
     Task,
     ContactPage,
     EventNote
@@ -55,7 +57,7 @@ const Menus = [
 
 const getMenusForUser = (userRole) => {
     if (userRole === "admin") {
-       
+        // Filter out the parent Leave menu item
         return Menus.filter(menu => menu.path !== "/app/leave" || menu.path !== '/app/timeline');
     }
     return Menus;

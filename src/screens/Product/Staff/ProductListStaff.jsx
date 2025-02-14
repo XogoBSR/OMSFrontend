@@ -12,25 +12,16 @@ import {
   IconButton
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import styled from "@emotion/styled";
 import { useDispatch, useSelector } from "react-redux";
 import { DefaultSort } from "constants/sort";
 import DialogConfirm from "components/DialogConfirm";
 import { ClientSelector, ProductSelector, UserSelector } from "selectors";
 import { ClientActions, ProductActions, UserActions } from "slices/actions";
-import ProductAdd from "../ProductAdd";
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-// import ProductUpdate from "../components/ProductUpdate";
+import ProductHeaderFilterStaff from "../components/ProductHeaderFilterStaff";
+import { Delete, Visibility } from "@mui/icons-material";
 
-
-// const FilterBox = styled(Box)(() => ({
-//   width: "100%",
-//   marginTop: 30,
-//   marginBottom: 20,
-//   display: "flex",
-//   justifyContent: "space-between",
-// }));
 
 function ProductListStaff() {
   const [filter, setFilter] = useState({
@@ -41,34 +32,37 @@ function ProductListStaff() {
 
   const profile = useSelector(UserSelector.profile());
   const users = useSelector(UserSelector.getUsers());
-  const [productPop, setProductPop] = useState(false);
 
   const [selectedUsers, setSelectedUsers] = useState([]);
-//   const [selectedIndices, setSelectedIndices] = useState([]);
   const clients = useSelector(ClientSelector.getClients())
 
   const [renderedUsers, setRenderedUsers] = useState([]); 
-  const [productUpdate,setProductUpdate] = useState(false)
-  const [product,setProduct] = useState(null)
-  const [addMemeber,setAddMember] = useState(false)
-  const [currentProduct,setCurrectProduct] = useState(null)
-
+  const [filterdArr,setFilteredArr] = useState([])
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    
     dispatch(UserActions.getUsers())
-    dispatch(ProductActions.getProductsByUser({
-        id:profile._id
-    }))
     dispatch(ClientActions.getClients())
   }, []);
+
+  useEffect(() => {
+    if(profile) {
+
+      dispatch(ProductActions.getProductsByUser({
+          id:profile._id
+      }))
+    }
+  },[profile])
 
   const history = useHistory()
 
   useEffect(() => {
-    console.log("Products ", products);
+    
+    if(filterdArr.length === 0) {
+      setFilteredArr(products)
+      console.log("filterdArr List Staff ", filterdArr);
+    }
   },[products])
 
   useEffect(() => {
@@ -76,22 +70,15 @@ function ProductListStaff() {
     
 }, [selectedUsers]);
 
-function addMemberController(str) {
-    setAddMember(str)
-}
 
-//   const handleChangeFilter = ({ target }) => {
-//     const { name, value } = target;
-
-//     setFilter({
-//       ...filter,
-//       [name]: value,
-//     });
-//   };
-
- function productAddControllerFun(str) {
-  setProductPop(str)
+ function filterdDataFunciton(arr) {
+          setFilteredArr(arr)
+          console.log(" received filterdArr List Staff ", filterdArr);
  }
+
+ useEffect(() => {
+  console.log(" received filterdArr List Staff ", filterdArr);
+ },[filterdArr])
 
   const handleChangePagination = (e, val) => {
     setFilter({
@@ -100,23 +87,14 @@ function addMemberController(str) {
     });
   };
 
-  const deleteProduct = (id) => {
-    dispatch(ProductActions.deleteProduct({
-      id
-    }))
-  }
-
   return (
-    <>
-
-     
+    <>     
           <Card style={{ overflow: "scroll" }}>
-          {productPop ? (
-            <ProductAdd openValFun={productAddControllerFun}/>
-          ) : null}
+          
           <Typography variant="h5" sx={{ fontWeight: 600 }}>
             Projects
           </Typography>
+          <ProductHeaderFilterStaff projects={products} filteredFun={filterdDataFunciton}/>
           <Box>
             <Table>
             <TableHead>
@@ -134,7 +112,7 @@ function addMemberController(str) {
               <TableBody>
               
   
-                {products&&products.length > 0 ? (products.map((data, index) => (
+                {filterdArr&&filterdArr.length > 0 ? (filterdArr.map((data, index) => (
                   <TableRow
                     sx={{ "&:last-child td, &:last-child td": { border: 0 } }}
                     key={index}
@@ -160,19 +138,17 @@ function addMemberController(str) {
                       {data.visibility ? "Public" : "Private"}
                     </TableCell>
                     <TableCell component="td" scope="row" align="center">
-             
-                          <Button style={{ backgroundColor: "green", color: "white", marginRight: 1 }} onClick={() => {
-                              // setProductUpdate(true)
-                              // setProduct(data)
-                              // history.push(`/app/project/update/${profile._id}`)
-                               history.push(`/app/user/tasklist/note/${data._id}`)
-                          }}>
-                            Update
-                          </Button>
-                          <Button style={{ backgroundColor: "red", color: "white", marginRight: 1 }} onClick={() => {
-                            deleteProduct(data._id)
-                          }} >Delete</Button>
-                  
+                        
+                        <IconButton onClick={() => {
+                            
+                            history.push(`/app/user/tasklist/note/${data._id}`)
+                       }}>
+                                                    <Visibility></Visibility>
+                                                  </IconButton>
+                                                  <IconButton>
+                                                    <Delete></Delete>
+                                                  </IconButton>
+                     
                     </TableCell>
                   </TableRow>
                 ))):(

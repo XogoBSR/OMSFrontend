@@ -53,6 +53,10 @@ function defineAbility(roles) {
             {act: actions.readAll, feat: features.client},
             {act: actions.readAll, feat: features.projects},
             {act: actions.readAll, feat: features.timeline},
+            {act: actions.readAll, feat: features.overview},
+            {act: actions.readAll, feat: features.timerequest},
+            {act: actions.readAll, feat: features.taskrequest},
+            {act: actions.readAll, feat: features.workschedule},
             {act: actions.readAll, feat: features.leave},
         ];
     }
@@ -70,6 +74,10 @@ function defineAbility(roles) {
             {act: actions.readAll, feat: features.client},
             {act: actions.readAll, feat: features.projects},
             {act: actions.readAll, feat: features.timeline},
+            {act: actions.readAll, feat: features.overview},
+            {act: actions.readAll, feat: features.timerequest},
+            {act: actions.readAll, feat: features.taskrequest},
+            {act: actions.readAll, feat: features.workschedule},
             {act: actions.readAll, feat: features.leave},
             
         ];
@@ -92,6 +100,10 @@ function defineAbility(roles) {
             {act: actions.readAll, feat: features.client},
             {act: actions.readAll, feat: features.projects},
             {act: actions.readAll, feat: features.timeline},
+            {act: actions.readAll, feat: features.overview},
+            {act: actions.readAll, feat: features.timerequest},
+            {act: actions.readAll, feat: features.taskrequest},
+            {act: actions.readAll, feat: features.workschedule},
             {act: actions.readAll, feat: features.leave},
         ]
     }

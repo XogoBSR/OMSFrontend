@@ -3,7 +3,14 @@ import {
     FormControl,
     InputLabel,
     MenuItem,
+    Paper,
     Select,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
     TextField,
   } from "@mui/material";
   import React, { useEffect, useState } from "react";
@@ -11,17 +18,17 @@ import {
   import { ProductSelector, UserSelector } from "selectors";
   import { ProductActions, UserActions } from "slices/actions";
   
+
+
   function TaskHeader() {
     const [task, setTask] = useState("");
     const [userSelected, setUserSelected] = useState("");
     const [projectSelected, setProjectSelected] = useState("");
     const [projectMembers, setProjectMembers] = useState([]);
-    
     const dispatch = useDispatch();
     const users = useSelector(UserSelector.getUsers());
     const projects = useSelector(ProductSelector.getProducts());
     const profile = useSelector(UserSelector.profile());
-  
     useEffect(() => {
       dispatch(UserActions.getUsers()); // Fetch users on mount
     }, [dispatch]);
@@ -75,22 +82,22 @@ import {
     };
   
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          margin: "15px",
-        }}
-      >
-        {/* Task Input */}
+     
+        <TableContainer component={Paper} sx={{ borderRadius: 2, boxShadow: 2,margin:"5px",marginTop:"5px",marginBottom:"5px" }}>
+          <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>
         <TextField
-          style={{ width: "500px" }}
+          style={{ width: "400px" }}
           placeholder="Enter Task"
           value={task}
           onChange={(e) => setTask(e.target.value)}
         />
+        </TableCell>
   
         {/* User Select */}
+        <TableCell>
         <FormControl style={{ width: "200px" }}>
           <InputLabel id="user">User</InputLabel>
           <Select
@@ -115,8 +122,10 @@ import {
             )}
           </Select>
         </FormControl>
+        </TableCell>
   
         {/* Project Select */}
+        <TableCell>
         <FormControl style={{ width: "200px" }}>
           <InputLabel id="project">Project</InputLabel>
           <Select
@@ -137,15 +146,21 @@ import {
             ))}
           </Select>
         </FormControl>
+        </TableCell>
   
         {/* Add Button */}
+        <TableCell>
         <Button
           style={{ backgroundColor: "#7229d9", color: "white", width: "100px" }}
           onClick={updateProjectFunction}
         >
           Add
         </Button>
-      </div>
+        </TableCell>
+        </TableRow>
+        </TableHead>
+        </Table>
+      </TableContainer>
     );
   }
   

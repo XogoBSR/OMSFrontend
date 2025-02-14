@@ -37,7 +37,8 @@ export const ProductSlice = createSlice({
         getProducts: () => {},
         createTaskByAdmin: () => {},
         createProductsTaskByUser: () => {},
-        getProductsByUser: () => {}
+        getProductsByUser: () => {},
+        updateTask: () => {}
     }
 })
 

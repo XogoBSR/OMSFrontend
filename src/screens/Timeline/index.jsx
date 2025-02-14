@@ -267,7 +267,29 @@ const Timeline = () => {
               for (let i = 0; i < activities[j].breaksHistory.length; i++) {
                 if(!('breakEndedTime' in activities[j].breaksHistory[i]))
                 {
-                  
+                  // if(activities[j]?.idelHistory.length > 0) {
+                  //   for (let i = 0; i < activities[j].idelHistory.length; i++) {
+                  //     if(!('idelEndedTime' in activities[j].idelHistory[i]))
+                  //       {
+                  //         if (slotTime >= new Date(activities[j].idelHistory[i].idelStartedTime) && slotTime<= currentTime) {
+                  //           return 'yellow';
+                  //         }
+                  //         else {
+                  //           if (slotTime >= startTime && startTime!== null && slotTime<= currentTime) {
+                  //             return '#32CD32';
+                  //           }
+                  //           else {
+                  //             return 'lightgrey';
+                  //           }
+                  //         }
+                  //       } else {
+                  //         if (slotTime >= new Date(activities[j].idelHistory[i].idelStartedTime) && slotTime <= new Date(activities[j].idelHistory[i].idelSlotEndedTime)){
+                        
+                  //           return 'yellow';
+                  //         }
+                  //       }
+                  //   }
+                  // }
                   if (slotTime >= new Date(activities[j].breaksHistory[i].breakStartedTime) && slotTime<= currentTime) {
                    
                      return 'red';

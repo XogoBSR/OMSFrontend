@@ -24,7 +24,8 @@ import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { AddCircle } from "@mui/icons-material";
 import AddMembers from "./components/AddMembers";
-import TaskHistoryAdmin from "./components/TaskHistoryAdmin";
+import TaskHistoryAdmin from "./TaskHistoryAdmin";
+
 
 
 const FilterBox = styled(Box)(() => ({
